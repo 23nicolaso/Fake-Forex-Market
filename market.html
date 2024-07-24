@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Exchange Platform</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="order-section">
+            <h2>Buy Orders</h2>
+            <div class="order-form">
+                <select id="buyOrderType" onchange="togglePriceInput('buy')">
+                    <option value="limit">Limit</option>
+                    <option value="market">Market</option>
+                </select>
+                <input type="number" id="buyPrice" placeholder="Price">
+                <input type="number" id="buyAmount" placeholder="Amount">
+                <button onclick="addCustomOrder('buy', document.getElementById('buyOrderType').value)">Place Buy Order</button>
+            </div>
+            <div class="order-list" id="buyOrders">
+                <!-- Buy orders will be listed here -->
+            </div>
+        </div>
+        <div class="order-section">
+            <h2>Sell Orders</h2>
+            <div class="order-form">
+                <select id="sellOrderType" onchange="togglePriceInput('sell')">
+                    <option value="limit">Limit</option>
+                    <option value="market">Market</option>
+                </select>
+                <input type="number" id="sellPrice" placeholder="Price">
+                <input type="number" id="sellAmount" placeholder="Amount">
+                <button onclick="addCustomOrder('sell', document.getElementById('sellOrderType').value)">Place Sell Order</button>
+            </div>
+            <div class="order-list" id="sellOrders">
+                <!-- Sell orders will be listed here -->
+            </div>
+        </div>
+    </div>
+    <div class="last-price" id="lastPrice">
+        <h2>Last Price: <span id="lastPriceValue">0</span></h2>
+    </div>
+    <div class="market-maker-exposure">
+        <h2>Market Maker Exposure</h2>
+        <p id="marketMakerExposure">0</p>
+    </div>
+    <div class="order-book-skew">
+        <h2>Order Book Skew</h2>
+        <p id="orderBookSkew">0</p>
+    </div>
+    
+
+    <div class="charts-container">
+        <div class="chart-section" id="lineChart">
+            <h2>Last Price Over Time</h2>
+            <canvas id="priceChart"></canvas>
+        </div>
+        <div class="chart-section">
+            <input type="number" id="histogramNumberInput" placeholder="Histogram resolution" value=5>
+            <h2>Price Histogram</h2>
+            <div class="histogram-bar" id="buyHistogram">
+                <span>Buy Orders</span>
+                <!-- Buy histogram bars will be plotted here -->
+            </div>
+            <div class="histogram-bar" id="sellHistogram">
+                <span>Sell Orders</span>
+                <!-- Sell histogram bars will be plotted here -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
